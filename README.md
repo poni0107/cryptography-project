@@ -1,63 +1,57 @@
-The objective of this project is to develop a decentralized application (DApp) that allows users to digitally sign and verify electronic documents using cryptographic mechanisms and the Ethereum blockchain.
+# E-Sign DApp - Decentralized Digital Document Signing System
+## Project Overview
+This project is a simple decentralized application (DApp) that allows users to:
 
-The focus is on document authenticity.
-The system ensures that the hash of a document and its digital signature are recorded on the blockchain, proving that the document was signed at a specific time and by a specific user.
++ compute the hash of an electronic document (e.g., PDF, Word),
 
--Key Components-
++ register that hash on the Ethereum blockchain as proof of authenticity,
 
-Smart Contract:
++ digitally sign the document using their crypto wallet (MetaMask),
 
-Links a document hash with the signer and the signing timestamp.
++ verify who has signed the document and whether it has been registered.
 
-Stores records of documents, their owners, and all signers.
+_Idea_: Instead of storing the full document on-chain (which is expensive and inefficient), the DApp stores the SHA-256 hash. This provides cryptographic proof that the document existed at a specific time and was signed by a specific person, without revealing its contents.
 
-Emits events when a document is registered, signed, or verified.
+## Technologies Used
 
-Supports multiple users signing the same document.
++ Solidity — smart contract
 
-Front-End Application:
++ Hardhat — development and testing framework
 
-Users can upload a document, calculate its hash, sign it digitally, and verify the signature.
++ React.js + Vite — frontend interface
 
-Provides notifications about successful registration, signing, and verification.
++ ethers.js — communication between frontend and blockchain
 
-Web3 Integration:
++ Crypto-JS — SHA-256 hashing
 
-Uses ethers.js or Web3.js for communication with the blockchain.
++ MetaMask — wallet integration and digital signing
 
-Connects via MetaMask for transaction and message signing.
+## Frontend – React Application
 
-Development & Testing:
+Go to the frontend folder:
 
-Deployment and testing in Truffle or Hardhat environment.
+cd e-sign-frontend
+npm install
+npm run dev
 
-Includes automated tests for:
+Open the application in your browser:
+http://localhost:5173 (http://localhost:5174)
 
-Document registration.
+## Features
 
-Adding signatures.
+_Document Registration_
++ The file is hashed locally (SHA-256) and the hash is stored on-chain.
++ Emits DocumentRegistered event.
 
-Verifying signature validity.
+## Digital Signing
++ The user signs the document hash with their private key via MetaMask.
++ The signature and timestamp are saved on-chain.
++ Emits DocumentSigned event.
 
-Cryptographic & Security Requirements:
+## Verification & Signer Lookup
++ Check if a document is registered.
++ Retrieve the list of all signers for a document.
 
-Document hash: SHA-256 (or another reliable hash function).
-
-Digital signatures: ECDSA (asymmetric cryptography).
-
-Signature verification: possible without the private key, using only publicly available data.
-
-Every record must include a timestamp.
-Technical Details
-
-Blockchain Network: Ethereum (Sepolia Testnet)
-
-Wallets: MetaMask accounts for signing transactions and messages
-
-Test ETH: Obtain free Sepolia ETH from the https://cloud.google.com/application/web3/faucet/ethereum/sepolia
-
-Deployment Options:
-
-Truffle/Hardhat (Recommended): Full deployment with tests and automation.
-
-Remix IDE: Simplified option (limited testing and scripts).
+## Author: Marijana Jeremić
++ Faculty of Engineering, Kragujevac, Serbia RS — Blockchain and Cryptography Project
++ September, 2025
